@@ -2,9 +2,10 @@ import json
 import os
 from detectron2.structures import BoxMode
 import numpy
+from detectron2.data import DatasetCatalog, MetadataCatalog
 
 
-def GetImageDataset(ImageDirectory):
+def GetImageData(ImageDirectory):
     # Generating a string containing the JSON file's location.
     FileJSON = os.path.join(ImageDirectory, ".json")
     # Opening & loading the file containing the region data.
@@ -12,7 +13,7 @@ def GetImageDataset(ImageDirectory):
         ImageAnnotations = json.load(File)
     #  A collection where each dictionary contains information about a single image.
     DatasetDictionaries = []
-    # Looping through the entire JSON file.
+    # Looping through the entire JSON file reformating the polygon information.
     for Index, Value in enumerate(ImageAnnotations.values()):
         # Container for holding the records, fields of the dataset.
         Record = {}
@@ -56,3 +57,11 @@ def GetImageDataset(ImageDirectory):
         # Adding records to the dataset dictionary.
         DatasetDictionaries.append(Record)
     return DatasetDictionaries
+
+
+# Registering & loading of the data.
+for D in ["train", "val"]:
+    DatasetCatalog.register("car_" + D, lambda D=D: GetImageData("././" + D),)
+Metadata = MetadataCatalog.get("._train")
+ImageDictionaries = GetImageData("././train")
+# "" → Placeholder for directory location containing the files!
