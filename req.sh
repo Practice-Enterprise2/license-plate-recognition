@@ -1,3 +1,2 @@
-mamba create -n d python=3.9 detectron2 ipykernel tensorflow numpy==1.19.* matplotlib pandas tqdm seaborn psutil cython opencv pytorch torchvision
-mamba install pytorch-cuda=11.8 -c pytorch -c nvidia
+mamba create -n d python=3.9 detectron2 ipykernel tensorflow numpy==1.19.* matplotlib pandas tqdm seaborn psutil cython opencv pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 mamba activate d
