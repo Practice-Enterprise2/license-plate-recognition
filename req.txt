@@ -1,0 +1,2 @@
+mamba create -n d python=3.9 detectron2 ipykernel tensorflow numpy==1.19.* matplotlib pandas tqdm seaborn psutil cython opencv pytorch torchvision
+mamba activate d
