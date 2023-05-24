@@ -1,7 +1,5 @@
 /images
 /annotations
-/content
-/output
 *.zip
 .idea/
 *.jpg
